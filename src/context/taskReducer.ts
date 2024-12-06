@@ -12,7 +12,8 @@ export type TaskAction =
   | { type: "UPDATE_TASK"; payload: TaskDto }
   | { type: "SET_TASKS"; payload: TaskDto[] }
   | { type: "FETCH_TASKS_SUCCESS"; payload: TaskDto[] }
-  | { type: "FILTER_TASKS"; payload: { filterType: FilterType } };
+  | { type: "FILTER_TASKS"; payload: { filterType: FilterType } }
+  | { type: "REORDER_TASKS"; payload: TaskDto[] };
 
 export const initialState: TaskState = {
   tasks: [],
@@ -80,6 +81,12 @@ export function taskReducer(state: TaskState, action: TaskAction): TaskState {
 
       return { ...state, filteredTasks: filteredTasks, tasks: state.tasks };
     }
+    case "REORDER_TASKS":
+      return {
+        ...state,
+        tasks: action.payload,
+        filteredTasks: action.payload, // Optionnel : mettre à jour les tâches filtrées si nécessaire
+      };
 
     default:
       throw new Error(`Unhandled action type: ${(action as TaskAction).type}`);

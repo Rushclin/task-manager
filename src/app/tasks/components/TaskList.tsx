@@ -1,12 +1,19 @@
 import React from 'react'
 import { TaskDto } from '../types'
 import TaskCard from './TaskCard';
+import { Reorder } from 'framer-motion';
+import { useTasks } from '@/hooks/useTask';
 
 interface TaskListDto {
     list: TaskDto[];
 }
 
 const TaskList: React.FC<TaskListDto> = ({ list }) => {
+    const { dispatch } = useTasks();
+
+    const handleReorder = (newOrder: TaskDto[]) => {
+        dispatch({ type: "REORDER_TASKS", payload: newOrder });
+    };
 
     if (!list.length) {
         return (
@@ -24,13 +31,16 @@ const TaskList: React.FC<TaskListDto> = ({ list }) => {
         )
     }
     return (
-        <div>
+        <Reorder.Group
+            onReorder={handleReorder}
+            values={list}
+        >
             {
                 list.map((task, index) => (
                     <TaskCard key={index} task={task} />
                 ))
             }
-        </div>
+        </Reorder.Group>
     )
 }
 
