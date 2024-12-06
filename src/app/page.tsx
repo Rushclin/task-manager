@@ -9,6 +9,7 @@ import { Button } from "@/shared/Button/Button";
 import { useTasks } from "@/hooks/useTask";
 import TaskList from "./tasks/components/TaskList";
 import { FilterType } from "./tasks/types";
+import { getFormattedDate } from "@/shared/functions";
 
 const FilterTabs = () => {
 
@@ -28,9 +29,9 @@ const FilterTabs = () => {
       {filters.map((filter) => (
         <button
           key={filter.name}
-          className={`flex items-center space-x-1 px-2 py-1 rounded-full text-sm font-medium ${activeFilter === filter.key
-            ? "text-blue-600"
-            : "text-gray-500 hover:text-gray-700"
+          className={`flex items-center space-x-1 px-2 py-1 rounded-full text-sm transition ${activeFilter === filter.key
+            ? "text-blue-600 font-bold"
+            : "text-gray-500 hover:text-gray-700 font-medium"
             }`}
           onClick={() => {
             setActiveFilter(filter.key)
@@ -41,7 +42,7 @@ const FilterTabs = () => {
         >
           <span>{filter.name}</span>
           <span
-            className={`px-2 py-0.5 rounded-full ${activeFilter === filter.key ? "bg-blue-600 text-white" : "bg-gray-300 text-gray-600"
+            className={`px-2 py-0.5 rounded-full transition ${activeFilter === filter.key ? "bg-blue-600 text-white" : "bg-gray-300 text-gray-600"
               }`}
           >
             {filter.count}
@@ -65,9 +66,7 @@ const Page = () => {
     { key: 1, title: "Today's Task" },
     { key: 2, title: "Last activity" }];
 
-
   const [isModalOpen, setIsModalOpen] = useState(false);
-
 
   return (
     <>
@@ -81,7 +80,7 @@ const Page = () => {
         <div className="flex justify-between items-center my-5">
           <div>
             <h1 className="text-xl font-bold text-black">Today&apos;s Task</h1>
-            <p className="text-sm text-gray-500">Wednesday, 11 May</p>
+            <p className="text-sm text-gray-500">{getFormattedDate()}</p>
           </div>
 
           <Button label="New Task" onClick={() => setIsModalOpen(true)} icon={<Plus size={16} color="#3d60eb" absoluteStrokeWidth />} />

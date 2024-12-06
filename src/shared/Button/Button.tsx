@@ -5,10 +5,10 @@ interface ButtonProps {
   onClick: () => void;
   loading?: boolean;
   disabled?: boolean;
-  icon?: React.ReactNode; 
-  variant?: "primary" | "secondary" | "danger"; 
-  className?: string; 
-  type?: "submit" | "reset" | "button" | undefined
+  icon?: React.ReactNode;
+  variant?: "primary" | "secondary" | "danger";
+  className?: string;
+  type?: "submit" | "reset" | "button" | undefined;
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -19,14 +19,14 @@ export const Button: React.FC<ButtonProps> = ({
   icon,
   variant = "primary",
   className = "",
-  type
+  type,
 }) => {
   const baseStyles =
-    "flex items-center space-x-1 px-4 py-2 font-medium rounded-xl transition focus:outline-none";
+    "flex items-center space-x-1 px-4 py-2 font-medium rounded-xl transition-all duration-200 ease-in-out focus:outline-none";
   const variantStyles = {
-    primary: "bg-blue-100 text-blue-600 hover:bg-blue-200",
-    secondary: "bg-gray-100 text-gray-600 hover:bg-gray-200",
-    danger: "bg-red-100 text-red-600 hover:bg-red-200",
+    primary: "bg-blue-100 text-blue-600 hover:bg-blue-200 hover:scale-105",
+    secondary: "bg-gray-100 text-gray-600 hover:bg-gray-200 hover:scale-105",
+    danger: "bg-red-100 text-red-600 hover:bg-red-200 hover:scale-105",
   };
 
   const isDisabled = loading || disabled;
@@ -34,13 +34,14 @@ export const Button: React.FC<ButtonProps> = ({
   return (
     <button
       onClick={onClick}
-      className={`${baseStyles} ${variantStyles[variant]} ${isDisabled ? "opacity-50 cursor-not-allowed" : ""} ${className}`}
+      className={`${baseStyles} ${variantStyles[variant]} ${isDisabled ? "opacity-50 cursor-not-allowed" : ""
+        } ${className}`}
       disabled={isDisabled}
       type={type}
     >
       {loading ? (
         <span className="flex items-center space-x-2">
-          <Loader size={16} color="#3d60eb" />
+          <Loader />
           <span>Loading...</span>
         </span>
       ) : (
@@ -53,28 +54,11 @@ export const Button: React.FC<ButtonProps> = ({
   );
 };
 
-const Loader: React.FC<{ size?: number; color?: string }> = ({ size = 16, color = "#000" }) => {
+const Loader: React.FC = () => {
   return (
-    <svg
-      className="animate-spin"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      style={{ width: size, height: size, stroke: color }}
-    >
-      <circle
-        className="opacity-25"
-        cx="12"
-        cy="12"
-        r="10"
-        stroke="currentColor"
-        strokeWidth="4"
-      ></circle>
-      <path
-        className="opacity-75"
-        fill="currentColor"
-        d="M4 12a8 8 0 018-8V0C6.477 0 2 4.477 2 10s4.477 10 10 10v-4a8 8 0 01-8-8z"
-      ></path>
-    </svg>
+    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+  </svg>
   );
 };

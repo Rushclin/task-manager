@@ -17,6 +17,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ onClose }) => {
 
     const [selectedUsers, setSelectedUsers] = React.useState<UserDto[]>([]);
     const [userList, setUserList] = React.useState<UserDto[]>([])
+    const [loading, setLoading] = React.useState(false)
 
     const { dispatch } = useTasks();
 
@@ -55,13 +56,16 @@ const TaskForm: React.FC<TaskFormProps> = ({ onClose }) => {
         //eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { users: _users, ...rest } = task
         const taskWithUserList: TaskDto = { users: selectedUsers, ...rest }
-
-        dispatch({ type: "ADD_TASK", payload: taskWithUserList });
-
-        f.reset(taskUtils.newObject());
-        setSelectedUsers([]);
-
-        onClose();
+        setLoading(true);
+        try {
+            dispatch({ type: "ADD_TASK", payload: taskWithUserList });
+            f.reset(taskUtils.newObject());
+            setSelectedUsers([]);
+            setLoading(false);
+            onClose();
+        } catch (error) {
+            setLoading(false);
+        }
     };
 
     return (
@@ -115,11 +119,12 @@ const TaskForm: React.FC<TaskFormProps> = ({ onClose }) => {
 
             <div className="flex justify-end space-x-4">
 
-                <Button label="Close" onClick={() => onClose()} variant="danger" className="bg-danger" type="reset"/>
+                <Button label="Close" onClick={() => onClose()} variant="danger" className="bg-danger" type="reset" />
 
                 <Button label="Create task"
                     disabled={taskUtils.hasErrors(errors)}
                     type="submit"
+                    loading={loading}
                     onClick={() => { }}
                     icon={<Plus size={16} color="#3d60eb" absoluteStrokeWidth />}
                 />

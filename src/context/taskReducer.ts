@@ -1,4 +1,5 @@
-import { FilterType, TaskDto } from "@/app/tasks/types"
+import { FilterType, TaskDto } from "@/app/tasks/types";
+import { toast } from "react-toastify";
 
 export interface TaskState {
   tasks: TaskDto[];
@@ -21,23 +22,28 @@ export const initialState: TaskState = {
 export function taskReducer(state: TaskState, action: TaskAction): TaskState {
   switch (action.type) {
     case "ADD_TASK":
-      return {
+      const newState = {
         ...state,
         tasks: [...state.tasks, action.payload],
         filteredTasks: [...state.filteredTasks, action.payload],
       };
+      toast.success("Task added successfully!");
+      return newState;
 
-    case "REMOVE_TASK":
-      return {
+    case "REMOVE_TASK": {
+      const newState = {
         ...state,
         tasks: state.tasks.filter((task) => task.id !== action.payload.id),
         filteredTasks: state.filteredTasks.filter(
           (task) => task.id !== action.payload.id
         ),
       };
+      toast.info("Task removed successfully!");
+      return newState;
+    }
 
-    case "UPDATE_TASK":
-      return {
+    case "UPDATE_TASK": {
+      const newState = {
         ...state,
         tasks: state.tasks.map((task) =>
           task.id === action.payload.id ? { ...task, ...action.payload } : task
@@ -46,6 +52,9 @@ export function taskReducer(state: TaskState, action: TaskAction): TaskState {
           task.id === action.payload.id ? { ...task, ...action.payload } : task
         ),
       };
+      toast.success("Task updated successfully!");
+      return newState;
+    }
 
     case "FETCH_TASKS_SUCCESS":
       return { ...state, tasks: action.payload, filteredTasks: action.payload };
@@ -53,17 +62,14 @@ export function taskReducer(state: TaskState, action: TaskAction): TaskState {
     case "FILTER_TASKS": {
       const { filterType } = action.payload;
 
-      let filteredTasks =  state.tasks;
-
-      console.log(`Hello`, state)
+      let filteredTasks = state.tasks;
 
       if (filterType === FilterType.ALL) {
         filteredTasks = state.tasks;
       } else {
         filteredTasks = state.tasks.filter((task) => {
           if (filterType === FilterType.CLOSED) {
-            console.log("Tache dans le filtre", task)
-            return task.closed
+            return task.closed;
           }
           if (filterType === FilterType.OPEN)
             return !task.closed && !task.archived;
@@ -71,8 +77,6 @@ export function taskReducer(state: TaskState, action: TaskAction): TaskState {
           return true;
         });
       }
-
-      console.log("Filterd Task ", filterType, filteredTasks);
 
       return { ...state, filteredTasks: filteredTasks, tasks: state.tasks };
     }

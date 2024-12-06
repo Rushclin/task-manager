@@ -52,3 +52,27 @@ export function formatDateRange(
     };
   }
 }
+
+export function getFormattedDate(): string {
+  const today = new Date();
+
+  const day = today.getDate();
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const month = monthNames[today.getMonth()];
+  const year = today.getFullYear();
+
+  return `Today, ${day} ${month} ${year}`;
+}

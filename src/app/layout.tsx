@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import "@/styles/globals.css";
 import { TaskProvider } from "@/context/TaskProvider";
 
@@ -21,6 +24,7 @@ export default function RootLayout({
     <html lang="fr">
       <body className="container">
         <TaskProvider>
+          <ToastContainer  position="top-right" autoClose={3000} />
           {children}
         </TaskProvider>
       </body>
