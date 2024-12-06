@@ -4,6 +4,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import "@/styles/globals.css";
 import { TaskProvider } from "@/context/TaskProvider";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 export const metadata: Metadata = {
   title: "Task Manager, By Rushclin Takam",
@@ -23,10 +25,12 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className="container">
-        <TaskProvider>
-          <ToastContainer  position="top-right" autoClose={3000} />
-          {children}
-        </TaskProvider>
+        <Suspense fallback={<Loading/>}>
+          <TaskProvider>
+            <ToastContainer position="top-right" autoClose={3000} />
+            {children}
+          </TaskProvider>
+        </Suspense>
       </body>
     </html>
   );
