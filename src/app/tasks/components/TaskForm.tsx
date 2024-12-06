@@ -9,8 +9,8 @@ import {
 import { Button } from "@/components/Button";
 import { Plus } from "lucide-react";
 import { useTasks } from "@/hooks/useTask";
-import UserPicker from "@/components/Inputs/UserPicker";
-import { TextField } from "@/components/Inputs/TextField";
+import UserPicker from "@/components/inputs/UserPicker";
+import { TextField } from "@/components/inputs/TextField";
 
 interface TaskFormProps {
   onClose: () => void;
