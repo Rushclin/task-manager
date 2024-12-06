@@ -2,10 +2,10 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { TaskDto, taskUtils, UserDto } from "../types";
-import { TextField } from "@/components/inputs/TextField";
-import UserPicker from "@/components/inputs/UserPicker";
+import { TextField } from "@/components/Inputs/TextField";
+import UserPicker from "@/components/Inputs/UserPicker";
 import { GithubApiUser, mapApiUserToUserDto } from "@/shared/mapGithubUserToUserDto";
-import { Button } from "@/shared/Button/Button";
+import { Button } from "@/components/Button";
 import { Plus } from "lucide-react";
 import { useTasks } from "@/hooks/useTask";
 
