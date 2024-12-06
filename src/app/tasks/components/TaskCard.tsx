@@ -4,6 +4,8 @@ import { TaskDto } from "../types";
 import { formatDateRange } from "@/shared/functions";
 import { useTasks } from "@/hooks/useTask";
 import { Reorder } from "framer-motion";
+import { Archive, ArchiveRestore } from "lucide-react";
+import { IconButton } from "@/components/IconButton";
 
 interface TaskCardprops {
   task: TaskDto;
@@ -14,6 +16,11 @@ const TaskCard: React.FC<TaskCardprops> = ({ task }) => {
 
   const handlerCloseTask = (task: TaskDto) => {
     const updatedTask = { ...task, closed: !task.closed };
+    dispatch({ type: "UPDATE_TASK", payload: updatedTask });
+  };
+
+  const handlerArchived = (task: TaskDto) => {
+    const updatedTask = { ...task, archived: !task.archived };
     dispatch({ type: "UPDATE_TASK", payload: updatedTask });
   };
 
@@ -32,7 +39,7 @@ const TaskCard: React.FC<TaskCardprops> = ({ task }) => {
 
             <p className="text-sm text-gray-500">{task.description}</p>
           </div>
-          <div>
+          <div className="flex">
             <div className="inline-flex items-center">
               <label className="flex items-center cursor-pointer relative">
                 <input
@@ -60,6 +67,20 @@ const TaskCard: React.FC<TaskCardprops> = ({ task }) => {
                 </span>
               </label>
             </div>
+
+            {task.archived ? (
+              <IconButton
+                className="m-2 bg-blue-200 focus:bg-blue-700 focus:shadow-none active:bg-blue-700 hover:bg-blue-700 active:shadow-none"
+                icon={<ArchiveRestore size={9} strokeWidth={2.25} />}
+                onClick={() => handlerArchived(task)}
+              />
+            ) : (
+              <IconButton
+                className="m-2 bg-red-200 focus:bg-red-700 focus:shadow-none active:bg-red-700 hover:bg-red-700 active:shadow-none"
+                icon={<Archive size={9} strokeWidth={2.25} />}
+                onClick={() => handlerArchived(task)}
+              />
+            )}
           </div>
         </div>
 

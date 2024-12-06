@@ -1,3 +1,7 @@
+import { TaskDto } from "@/app/tasks/types";
+
+const TASKS_STORAGE_KEY = "tasks";
+
 export function generateUUID(): string {
   return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (char) => {
     const random = (Math.random() * 16) | 0;
@@ -75,4 +79,17 @@ export function getFormattedDate(): string {
   const year = today.getFullYear();
 
   return `Today, ${day} ${month} ${year}`;
+}
+
+export function saveTasksToLocalStorage(tasks: TaskDto[]) {
+  if (typeof window !== "undefined")
+    localStorage.setItem(TASKS_STORAGE_KEY, JSON.stringify(tasks));
+}
+
+export function loadTasksFromLocalStorage(): TaskDto[] {
+  if (typeof window !== "undefined") {
+    const storedTasks = localStorage.getItem(TASKS_STORAGE_KEY);
+    return storedTasks ? JSON.parse(storedTasks) : [];
+  }
+  return [];
 }

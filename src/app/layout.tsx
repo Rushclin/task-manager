@@ -9,6 +9,7 @@ import Loading from "./loading";
 
 export const metadata: Metadata = {
   title: "Task Manager, By Rushclin Takam",
+  description: "A task managment",
   icons: [
     {
       rel: "icon",

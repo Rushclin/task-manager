@@ -13,7 +13,6 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, children }) => {
         isOpen ? "translate-x-0" : "-translate-x-full"
       }`}
     >
-      {/* Background overlay */}
       <div
         className={`fixed inset-0 bg-black bg-opacity-50 ${
           isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
@@ -21,7 +20,6 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, children }) => {
         onClick={onClose}
       ></div>
 
-      {/* Drawer content */}
       <div className="fixed top-0 left-0 h-full w-80 bg-white shadow-lg">
         <div className="flex items-center justify-between p-4 border-b">
           <h2 className="text-lg font-bold">Drawer</h2>

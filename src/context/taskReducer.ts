@@ -1,4 +1,8 @@
 import { FilterType, TaskDto } from "@/app/tasks/types";
+import {
+  loadTasksFromLocalStorage,
+  saveTasksToLocalStorage,
+} from "@/shared/functions";
 import { toast } from "react-toastify";
 
 export interface TaskState {
@@ -8,16 +12,13 @@ export interface TaskState {
 
 export type TaskAction =
   | { type: "ADD_TASK"; payload: TaskDto }
-  | { type: "REMOVE_TASK"; payload: { id: string } }
   | { type: "UPDATE_TASK"; payload: TaskDto }
-  | { type: "SET_TASKS"; payload: TaskDto[] }
-  | { type: "FETCH_TASKS_SUCCESS"; payload: TaskDto[] }
   | { type: "FILTER_TASKS"; payload: { filterType: FilterType } }
   | { type: "REORDER_TASKS"; payload: TaskDto[] };
 
 export const initialState: TaskState = {
-  tasks: [],
-  filteredTasks: [],
+  tasks: loadTasksFromLocalStorage(),
+  filteredTasks: loadTasksFromLocalStorage(),
 };
 
 export function taskReducer(state: TaskState, action: TaskAction): TaskState {
@@ -28,19 +29,8 @@ export function taskReducer(state: TaskState, action: TaskAction): TaskState {
         tasks: [...state.tasks, action.payload],
         filteredTasks: [...state.filteredTasks, action.payload],
       };
+      saveTasksToLocalStorage(newState.tasks);
       toast.success("Task added successfully!");
-      return newState;
-    }
-
-    case "REMOVE_TASK": {
-      const newState = {
-        ...state,
-        tasks: state.tasks.filter((task) => task.id !== action.payload.id),
-        filteredTasks: state.filteredTasks.filter(
-          (task) => task.id !== action.payload.id
-        ),
-      };
-      toast.info("Task removed successfully!");
       return newState;
     }
 
@@ -48,18 +38,16 @@ export function taskReducer(state: TaskState, action: TaskAction): TaskState {
       const newState = {
         ...state,
         tasks: state.tasks.map((task) =>
-          task.id === action.payload.id ? { ...task, ...action.payload } : task
+          task.id === action.payload.id ? { ...task, ...action.payload } : task,
         ),
         filteredTasks: state.filteredTasks.map((task) =>
-          task.id === action.payload.id ? { ...task, ...action.payload } : task
+          task.id === action.payload.id ? { ...task, ...action.payload } : task,
         ),
       };
       toast.success("Task updated successfully!");
+      saveTasksToLocalStorage(newState.tasks);
       return newState;
     }
-
-    case "FETCH_TASKS_SUCCESS":
-      return { ...state, tasks: action.payload, filteredTasks: action.payload };
 
     case "FILTER_TASKS": {
       const { filterType } = action.payload;
