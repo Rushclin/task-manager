@@ -25,6 +25,13 @@ export interface TaskDto {
   users: UserDto[];
 }
 
+export enum FilterType {
+  ALL = "all",
+  OPEN = "open",
+  CLOSED = "closed",
+  ARCHIVED = "archived",
+}
+
 class TaskTypeUtils<T extends TaskDto> {
   newObject(): TaskDto {
     return {

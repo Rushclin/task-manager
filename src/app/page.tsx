@@ -1,6 +1,5 @@
 "use client"
 import React, { useState } from "react";
-import TaskCard from "./tasks/components/TaskCard";
 import { TabList, TabPanel } from "@/components/Tabs/Tabs";
 import ComminSoon from "@/components/ComminSoon";
 import TaskForm from "./tasks/components/TaskForm";
@@ -9,13 +8,7 @@ import { Plus } from "lucide-react";
 import { Button } from "@/shared/Button/Button";
 import { useTasks } from "@/hooks/useTask";
 import TaskList from "./tasks/components/TaskList";
-
-export enum FilterType {
-  ALL = "all",
-  OPEN = "open",
-  CLOSED = "closed",
-  ARCHIVED = "archived",
-}
+import { FilterType } from "./tasks/types";
 
 const FilterTabs = () => {
 
@@ -63,9 +56,7 @@ const FilterTabs = () => {
 
 const Page = () => {
 
-  const { state, dispatch } = useTasks()
-
-  console.log("la liste des tasks ", state)
+  const { state } = useTasks()
 
   const [activeTab, setActiveTab] = React.useState<number>(1);
 
@@ -89,7 +80,7 @@ const Page = () => {
       <TabPanel isActive={activeTab === 1}>
         <div className="flex justify-between items-center my-5">
           <div>
-            <h1 className="text-xl font-bold text-black">Today's Task</h1>
+            <h1 className="text-xl font-bold text-black">Today&apos;s Task</h1>
             <p className="text-sm text-gray-500">Wednesday, 11 May</p>
           </div>
 

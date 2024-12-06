@@ -52,7 +52,8 @@ const TaskForm: React.FC<TaskFormProps> = ({ onClose }) => {
     } = f;
 
     const onSubmit = (task: TaskDto) => {
-        const { users, ...rest } = task
+        //eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const { users: _users, ...rest } = task
         const taskWithUserList: TaskDto = { users: selectedUsers, ...rest }
 
         dispatch({ type: "ADD_TASK", payload: taskWithUserList });

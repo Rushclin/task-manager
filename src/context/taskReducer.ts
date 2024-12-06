@@ -1,5 +1,4 @@
-import { FilterType } from "@/app/page";
-import { TaskDto } from "@/app/tasks/types";
+import { FilterType, TaskDto } from "@/app/tasks/types"
 
 export interface TaskState {
   tasks: TaskDto[];
@@ -65,7 +64,7 @@ export function taskReducer(state: TaskState, action: TaskAction): TaskState {
           if (filterType === FilterType.CLOSED) {
             console.log("Tache dans le filtre", task)
             return task.closed
-          };
+          }
           if (filterType === FilterType.OPEN)
             return !task.closed && !task.archived;
           if (filterType === FilterType.ARCHIVED) return task.archived;

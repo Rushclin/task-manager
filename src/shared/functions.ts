@@ -1,5 +1,3 @@
-import { ReactNode } from "react";
-
 export function generateUUID(): string {
   return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (char) => {
     const random = (Math.random() * 16) | 0;
