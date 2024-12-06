@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #E3E4E8;
+  --foreground: #171717;
+
+  --gray-1: #DADADA;
+
+  --color-primary: #2A5FF6;
+  --color-secondary: #E5ECF9;
+}
+
+*{
+  font-family: 'Outfit';
+}
+
+.text-primary{
+  color: var(--color-primary);
+}
+
+.text-secondary{
+  color: var(--color-secondary)
+}
+
+.text-gray{
+  color: var(--gray-1);
+}
+
+
+
+.bg-primary{
+  background-color: var(--color-primary);
+}
+
+.bg-secondary{
+  background-color: var(--color-secondary)
+}
+
+.bg-gray{
+  background-color: var(--gray-1);
+}
+
+
+
+.container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 1rem/* 16px */;
+  padding-left: 1rem/* 16px */;
+  padding-top: 1rem;
+}
+@media (min-width: 640px) {
+  .container {
+      max-width: 640px;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+      max-width: 768px;
+  }
+}
+@media (min-width: 1024px) {
+  .container {
+      max-width: 1024px;
+  }
+}
+@media (min-width: 1280px) {
+  .container {
+      max-width: 1280px;
+      padding-right: 40px;
+      padding-left: 40px;
+  }
+}
+@media (min-width: 1536px) {
+  .container {
+      max-width: 1536px;
+      padding-right: 70px;
+      padding-left: 70px;
+  }
+}
+
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+}
