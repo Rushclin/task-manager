@@ -24,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body className="container">
+      <body className="container m-5 border">
         <Suspense fallback={<Loading/>}>
           <TaskProvider>
             <ToastContainer position="top-right" autoClose={3000} />
