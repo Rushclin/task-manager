@@ -8,7 +8,7 @@ export function generateUUID(): string {
 
 export function formatDateRange(
   startTimestamp: string | number,
-  endTimestamp: string | number
+  endTimestamp: string | number,
 ): { day: string; dateRange: string } {
   const startDate = new Date(startTimestamp);
   const endDate = new Date(endTimestamp);
@@ -17,7 +17,7 @@ export function formatDateRange(
   const todayStart = new Date(
     now.getFullYear(),
     now.getMonth(),
-    now.getDate()
+    now.getDate(),
   ).getTime();
   const yesterdayStart = todayStart - 24 * 60 * 60 * 1000;
 
