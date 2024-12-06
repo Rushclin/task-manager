@@ -29,7 +29,7 @@ const FilterTabs = () => {
   ];
 
   return (
-    <div className="flex items-center space-x-4 overflow-auto my-5">
+    <div className="flex items-center space-x-4 overflow-auto my-7">
       {filters.map((filter) => (
         <button
           key={filter.name}

@@ -30,7 +30,7 @@ const Task = () => {
         <ComminSoon title="Page en cours de construction !" />
       </TabPanel>
       <TabPanel isActive={activeTab === 1}>
-        <div className="flex justify-between items-center my-5">
+        <div className="flex justify-between items-center my-10">
           <div>
             <h1 className="text-2xl font-bold text-black">Today&apos;s Task</h1>
             <p className="text-sm text-gray-500">{getFormattedDate()}</p>
