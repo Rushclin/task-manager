@@ -22,7 +22,7 @@ export const initialState: TaskState = {
 
 export function taskReducer(state: TaskState, action: TaskAction): TaskState {
   switch (action.type) {
-    case "ADD_TASK":
+    case "ADD_TASK": {
       const newState = {
         ...state,
         tasks: [...state.tasks, action.payload],
@@ -30,13 +30,14 @@ export function taskReducer(state: TaskState, action: TaskAction): TaskState {
       };
       toast.success("Task added successfully!");
       return newState;
+    }
 
     case "REMOVE_TASK": {
       const newState = {
         ...state,
         tasks: state.tasks.filter((task) => task.id !== action.payload.id),
         filteredTasks: state.filteredTasks.filter(
-          (task) => task.id !== action.payload.id,
+          (task) => task.id !== action.payload.id
         ),
       };
       toast.info("Task removed successfully!");
@@ -47,10 +48,10 @@ export function taskReducer(state: TaskState, action: TaskAction): TaskState {
       const newState = {
         ...state,
         tasks: state.tasks.map((task) =>
-          task.id === action.payload.id ? { ...task, ...action.payload } : task,
+          task.id === action.payload.id ? { ...task, ...action.payload } : task
         ),
         filteredTasks: state.filteredTasks.map((task) =>
-          task.id === action.payload.id ? { ...task, ...action.payload } : task,
+          task.id === action.payload.id ? { ...task, ...action.payload } : task
         ),
       };
       toast.success("Task updated successfully!");

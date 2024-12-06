@@ -66,6 +66,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ onClose }) => {
       onClose();
     } catch (error) {
       setLoading(false);
+      console.error(error);
     }
   };
 
