@@ -1,11 +1,8 @@
-"use client"
+"use client";
 import React from "react";
 import Task from "./tasks";
 
 const Page = () => {
-  return (
-    <Task />
-  )
-
-}
+  return <Task />;
+};
 export default Page;

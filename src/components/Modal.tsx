@@ -11,7 +11,9 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, title }) => {
   return (
     <div
       className={`fixed inset-0 z-50 flex items-center justify-center  transition-opacity duration-300 ${
-        isOpen ? "opacity-100 pointer-events-auto bg-black bg-opacity-50" : "opacity-0 pointer-events-none"
+        isOpen
+          ? "opacity-100 pointer-events-auto bg-black bg-opacity-50"
+          : "opacity-0 pointer-events-none"
       }`}
     >
       <div
@@ -21,10 +23,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, title }) => {
       >
         <div className="flex justify-between items-center px-4 py-2 border-b">
           <h2 className="text-lg font-bold">{title}</h2>
-          <button
-            onClick={onClose}
-            className="text-gray-500 hover:text-black"
-          >
+          <button onClick={onClose} className="text-gray-500 hover:text-black">
             ✕
           </button>
         </div>

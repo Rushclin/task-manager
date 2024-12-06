@@ -8,7 +8,10 @@ import {
   type UseFormReturn,
 } from "react-hook-form";
 
-type TextFieldProps<TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>> = {
+type TextFieldProps<
+  TFieldValues extends FieldValues,
+  TName extends FieldPath<TFieldValues>,
+> = {
   control: Control<TFieldValues>;
   name: TName;
   formState: UseFormReturn<TFieldValues>["formState"];
@@ -24,7 +27,10 @@ type TextFieldProps<TFieldValues extends FieldValues, TName extends FieldPath<TF
   required?: boolean;
 };
 
-export function TextField<TFieldValues extends FieldValues, TName extends FieldPath<TFieldValues>>({
+export function TextField<
+  TFieldValues extends FieldValues,
+  TName extends FieldPath<TFieldValues>,
+>({
   formState,
   control,
   name,
@@ -37,7 +43,7 @@ export function TextField<TFieldValues extends FieldValues, TName extends FieldP
   readOnly,
   placeholder,
   required,
-  type
+  type,
 }: React.PropsWithChildren<TextFieldProps<TFieldValues, TName>>) {
   const { [name]: fieldError } = formState.errors;
   const error = fieldError as FieldError;
@@ -47,7 +53,10 @@ export function TextField<TFieldValues extends FieldValues, TName extends FieldP
   return (
     <div className={`w-full space-y-2 ${className}`}>
       {label && (
-        <label htmlFor={name} className="block text-sm font-medium text-gray-700">
+        <label
+          htmlFor={name}
+          className="block text-sm font-medium text-gray-700"
+        >
           {label}
         </label>
       )}
@@ -73,7 +82,9 @@ export function TextField<TFieldValues extends FieldValues, TName extends FieldP
         )}
       />
       {helperText && (
-        <p className={`text-sm ${isError ? "text-red-500" : "text-gray-500"}`}>{helperText}</p>
+        <p className={`text-sm ${isError ? "text-red-500" : "text-gray-500"}`}>
+          {helperText}
+        </p>
       )}
     </div>
   );

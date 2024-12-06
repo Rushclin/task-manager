@@ -6,12 +6,16 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --write \"**/*.{html,css,json,js,jsx,ts,tsx}\""
   },
   "dependencies": {
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
     "framer-motion": "^11.13.1",
     "lucide-react": "^0.468.0",
     "next": "15.0.3",
+    "prettier": "^3.4.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.53.2",

@@ -87,11 +87,10 @@ class TaskTypeUtils<T extends TaskDto> {
     return errors;
   }
 
-
   private _isValid(obj: T, errors?: Errors<T>): boolean {
     errors ??= this.validate(obj);
     return Object.keys(errors).every(
-      (key) => errors![key as keyof Errors<T>] === undefined
+      (key) => errors![key as keyof Errors<T>] === undefined,
     );
   }
 

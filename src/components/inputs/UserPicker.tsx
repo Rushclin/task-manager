@@ -71,9 +71,7 @@ const UserPicker: React.FC<UserPickerProps> = ({
               key={user.id}
               onClick={() => handleUserClick(user)}
               className={`flex items-center gap-2 px-3 py-2 cursor-pointer hover:bg-gray-100 ${
-                selectedUsers.find((u) => u.id === user.id)
-                  ? "bg-blue-100"
-                  : ""
+                selectedUsers.find((u) => u.id === user.id) ? "bg-blue-100" : ""
               }`}
             >
               <img

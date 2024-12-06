@@ -25,10 +25,7 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, children }) => {
       <div className="fixed top-0 left-0 h-full w-80 bg-white shadow-lg">
         <div className="flex items-center justify-between p-4 border-b">
           <h2 className="text-lg font-bold">Drawer</h2>
-          <button
-            className="text-gray-500 hover:text-black"
-            onClick={onClose}
-          >
+          <button className="text-gray-500 hover:text-black" onClick={onClose}>
             ✕
           </button>
         </div>
