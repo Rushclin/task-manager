@@ -2,8 +2,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { TaskDto, taskUtils, UserDto } from "../types";
-import { TextField } from "@/components/Inputs/TextField";
-import UserPicker from "@/components/Inputs/UserPicker";
 import {
   GithubApiUser,
   mapApiUserToUserDto,
@@ -11,6 +9,8 @@ import {
 import { Button } from "@/components/Button";
 import { Plus } from "lucide-react";
 import { useTasks } from "@/hooks/useTask";
+import UserPicker from "@/components/Inputs/UserPicker";
+import { TextField } from "@/components/Inputs/TextField";
 
 interface TaskFormProps {
   onClose: () => void;
